@@ -109,36 +109,40 @@ section{padding:44px 28px;position:relative;}
 .intro{
   text-align:center;
   padding-top:52px;
-  background:linear-gradient(160deg, var(--rose) 0%, var(--lavender) 100%);
+  background:linear-gradient(160deg, var(--sky) 0%, #EAF4F7 100%);
   position:relative;
   overflow:hidden;
 }
 .intro p{
   position:relative;z-index:1;
   font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;font-style:italic;font-weight:500;line-height:1.55;
-  color:#4A3540;
-  max-width:28ch;margin:0 auto;
+  font-size:1.65rem;font-style:italic;font-weight:500;line-height:1.5;
+  color:#374654;
+  max-width:38ch;margin:0 auto;
 }
-.section-head{text-align:center;margin-bottom:28px;max-width:700px;margin-left:auto;margin-right:auto;}
+.section-head{text-align:center;margin-bottom:26px;max-width:900px;margin-left:auto;margin-right:auto;}
 .section-eyebrow{
-  font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  font-size:0.78rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
   color:var(--rose-deep);margin:0 0 8px;
 }
-.section-title{font-size:1.9rem;color:var(--ink);font-style:italic;}
+.section-title{font-size:2.2rem;color:var(--ink);font-style:italic;}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity 0.8s ease, transform 0.8s ease;}
 .reveal.is-visible{opacity:1;transform:translateY(0);}
 
 /* ---------- COUNTDOWN ---------- */
-.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:440px;margin:0 auto;}
-.count-tile{border-radius:20px;padding:16px 4px;text-align:center;box-shadow:var(--shadow);}
+.countdown-date{
+  text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.15rem;color:var(--rose-deep);font-weight:600;margin:0 0 22px;
+}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:680px;margin:0 auto;}
+.count-tile{border-radius:24px;padding:26px 8px;text-align:center;box-shadow:var(--shadow);}
 .count-tile:nth-child(1){background:var(--rose);}
 .count-tile:nth-child(2){background:var(--sky);}
 .count-tile:nth-child(3){background:var(--sage);}
 .count-tile:nth-child(4){background:var(--lavender);}
-.count-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink);display:block;}
-.count-label{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);opacity:0.65;}
+.count-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink);display:block;}
+.count-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);opacity:0.65;}
 .calendar-link{
   display:block;text-align:center;margin-top:20px;font-size:0.85rem;font-weight:700;
   color:var(--rose-deep);text-decoration:none;border-bottom:1.5px solid currentColor;
@@ -147,11 +151,11 @@ section{padding:44px 28px;position:relative;}
 .calendar-link:focus-visible, a:focus-visible, button:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:2px;}
 
 /* ---------- INFOS ---------- */
-.infos-grid{display:grid;grid-template-columns:1fr;gap:14px;max-width:840px;margin:0 auto;}
+.infos-grid{display:grid;grid-template-columns:1fr;gap:20px;max-width:1160px;margin:0 auto;}
 @media (min-width:520px){.infos-grid{grid-template-columns:1fr 1fr;}}
-.info-card{background:var(--surface);border-radius:24px;padding:26px 22px;box-shadow:var(--shadow);}
-.icon-badge{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
-.icon-badge svg{width:20px;height:20px;}
+.info-card{background:var(--surface);border-radius:28px;padding:38px 32px;box-shadow:var(--shadow);}
+.icon-badge{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+.icon-badge svg{width:26px;height:26px;}
 .info-card:nth-child(4n+1) .icon-badge{background:var(--rose);}
 .info-card:nth-child(4n+1) .icon-badge svg{color:var(--rose-deep);}
 .info-card:nth-child(4n+2) .icon-badge{background:var(--sky);}
@@ -160,14 +164,14 @@ section{padding:44px 28px;position:relative;}
 .info-card:nth-child(4n+3) .icon-badge svg{color:var(--sage-deep);}
 .info-card:nth-child(4n+4) .icon-badge{background:var(--lavender);}
 .info-card:nth-child(4n+4) .icon-badge svg{color:var(--lavender-deep);}
-.info-card h3{font-size:1.15rem;margin-bottom:6px;color:var(--ink);font-style:italic;}
-.info-card p{margin:0;font-size:0.95rem;line-height:1.6;color:var(--ink-muted);}
-.info-card a{color:var(--rose-deep);text-decoration:none;border-bottom:1.5px solid currentColor;font-weight:700;}
+.info-card h3{font-size:1.5rem;margin-bottom:8px;color:var(--ink);font-style:italic;}
+.info-card p{margin:0;font-size:1.08rem;line-height:1.65;color:var(--ink-muted);}
+.info-card a{color:var(--rose-deep);text-decoration:none;border-bottom:1.5px solid currentColor;font-weight:700;font-size:1.02rem;}
 .info-card.wide{grid-column:1 / -1;}
 
 /* ---------- CTA SECTIONS ---------- */
-.cta-section{text-align:center;background:var(--surface);border-radius:28px;max-width:640px;margin:0 auto;padding:46px 28px;box-shadow:var(--shadow);}
-.cta-section p.lede{font-size:0.96rem;color:var(--ink-muted);max-width:36ch;margin:0 auto 26px;line-height:1.65;}
+.cta-section{text-align:center;background:var(--surface);border-radius:28px;max-width:760px;margin:0 auto;padding:52px 34px;box-shadow:var(--shadow);}
+.cta-section p.lede{font-size:1.08rem;color:var(--ink-muted);max-width:40ch;margin:0 auto 28px;line-height:1.65;}
 .btn{
   display:inline-flex;align-items:center;gap:10px;
   font-family:'Nunito',sans-serif;font-weight:700;font-size:0.95rem;letter-spacing:0.01em;
@@ -244,8 +248,8 @@ footer .fine{font-size:0.82rem;color:#F0E2DA;}
 
   <!-- ============ INTRO ============ -->
   <section class="intro reveal">
-    <div class="blob" style="width:220px;height:220px;background:var(--sky);top:-60px;left:-60px;opacity:0.6;"></div>
-    <div class="blob" style="width:180px;height:180px;background:var(--sage);bottom:-50px;right:-40px;opacity:0.5;"></div>
+    <div class="blob" style="width:220px;height:220px;background:var(--rose);top:-60px;left:-60px;opacity:0.55;"></div>
+    <div class="blob" style="width:180px;height:180px;background:var(--lavender);bottom:-50px;right:-40px;opacity:0.5;"></div>
     <p>On se marie — dans une grange, à la campagne, entourés des gens qu'on aime. On serait ravis de vous avoir à nos côtés.</p>
     <a class="btn btn-ghost story-cta" href="histoire.html">Envie de connaître notre histoire ? →</a>
   </section>
@@ -257,6 +261,7 @@ footer .fine{font-size:0.82rem;color:#F0E2DA;}
       <p class="section-eyebrow">À vos agendas</p>
       <h2 class="section-title">Le compte à rebours</h2>
     </div>
+    <p class="countdown-date" id="cfg-countdown-date">Samedi 24 avril 2027 — 16h30</p>
     <div class="countdown" id="countdown" aria-live="polite">
       <div class="count-tile"><span class="count-num" id="cd-days">--</span><span class="count-label">jours</span></div>
       <div class="count-tile"><span class="count-num" id="cd-hours">--</span><span class="count-label">heures</span></div>
@@ -326,10 +331,6 @@ footer .fine{font-size:0.82rem;color:#F0E2DA;}
     <div class="footer-veil"></div>
     <div class="footer-content">
       <p class="sign" id="cfg-footer-names">Awéna &amp; Grégoire</p>
-      <svg class="donkeys" viewBox="0 0 220 90" fill="none" stroke="currentColor">
-        <g transform="translate(10,15) scale(0.9)"><use href="#ico-donkey" width="100" height="100"/></g>
-        <g transform="translate(110,20) scale(0.75)"><use href="#ico-donkey" width="100" height="100"/></g>
-      </svg>
       <p class="fine" id="cfg-footer-note">Avec impatience de vous voir tous réunis.</p>
     </div>
   </footer>
@@ -357,6 +358,7 @@ footer .fine{font-size:0.82rem;color:#F0E2DA;}
   document.getElementById('cfg-names').textContent = CONFIG.names;
   document.getElementById('cfg-footer-names').textContent = CONFIG.names;
   document.getElementById('cfg-date-long').textContent = CONFIG.weddingDateLong;
+  document.getElementById('cfg-countdown-date').textContent = CONFIG.weddingDateLong;
   document.getElementById('cfg-venue-name').textContent = CONFIG.venueName;
   document.getElementById('cfg-venue-address').textContent = CONFIG.venueAddress;
   document.getElementById('cfg-rsvp-deadline').textContent = "Merci de répondre avant le " + CONFIG.rsvpDeadline;
