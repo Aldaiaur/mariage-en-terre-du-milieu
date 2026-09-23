@@ -1,150 +1,248 @@
-<title>Notre histoire</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap');
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF7F2">
+<title>Notre histoire — Awéna &amp; Grégoire</title>
+<meta name="description" content="Comment tout a commencé : deux chemins, beaucoup de bêtises, et une rencontre.">
 
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notre histoire — Awéna & Grégoire">
+<meta property="og:description" content="Comment tout a commencé. Pas obligatoire, mais on avait envie de vous la raconter.">
+<meta property="og:image" content="https://aldaiaur.github.io/save-the-date-mariage-test/photos/histoire-07-epilogue.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap">
+
+<style>
 :root{
   color-scheme:light;
   --bg:#FBF7F2;
   --surface:#FFFFFF;
   --surface-2:#F7EEE6;
   --ink:#4A4048;
-  --ink-muted:#8C8079;
+  --ink-muted:#7D7069;
   --rose:#F2C9C4;
-  --rose-deep:#DD8B84;
+  --rose-deep:#CE7A73;
   --sky:#C7E2EA;
-  --sky-deep:#7FAFC4;
+  --sky-deep:#6BA0B7;
   --sage:#CFDAC2;
-  --sage-deep:#93A87E;
+  --sage-deep:#849C6E;
   --sand:#EAD9C1;
   --lavender:#DDD2EA;
-  --lavender-deep:#A98FC4;
+  --lavender-deep:#9B7FB8;
   --line:#EEE1D3;
+
+  --fs-xs:   clamp(0.75rem, 0.72rem + 0.15vw, 0.84rem);
+  --fs-sm:   clamp(0.92rem, 0.88rem + 0.2vw, 1rem);
+  --fs-base: clamp(1.06rem, 1rem + 0.3vw, 1.19rem);
+  --fs-md:   clamp(1.18rem, 1.06rem + 0.5vw, 1.4rem);
+  --fs-lg:   clamp(1.45rem, 1.25rem + 0.9vw, 1.9rem);
+  --fs-xl:   clamp(1.9rem, 1.5rem + 1.8vw, 2.8rem);
+
+  --pad-x:   clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
+  --space-y: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+  --topbar-h: 62px;
 }
 
 *{box-sizing:border-box;}
-:root{color-scheme:light;}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased;position:relative;}
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;
-  background-image:radial-gradient(rgba(74,64,72,0.045) 1px, transparent 1px);background-size:4px 4px;
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:calc(var(--topbar-h) + 14px);
+  -webkit-text-size-adjust:100%;
 }
 @media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
   *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
 }
-.page{overflow-x:hidden;position:relative;z-index:1;}
+
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Nunito',system-ui,sans-serif;
+  font-size:var(--fs-base);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+@media (min-width:900px){
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.4;
+    background-image:radial-gradient(rgba(74,64,72,0.045) 1px, transparent 1px);background-size:4px 4px;
+  }
+}
+
+/* pas d'overflow-x ici : ça créait un conteneur de scroll qui cassait le sticky
+   et rendait le défilement tactile capricieux. Le clipping se fait par section. */
+.page{position:relative;z-index:1;}
+
 h1,h2,.display{font-family:'Cormorant Garamond',serif;font-weight:600;text-wrap:balance;margin:0;}
+img{max-width:100%;}
 .blob{position:absolute;border-radius:50%;filter:blur(50px);pointer-events:none;z-index:0;}
 
-/* ---------- TOP BAR ---------- */
+/* ---------- BARRE DE PROGRESSION ---------- */
+.progress{position:fixed;top:0;left:0;right:0;height:4px;z-index:60;pointer-events:none;background:rgba(255,255,255,0.28);}
+.progress span{
+  display:block;height:100%;width:0;
+  background:linear-gradient(90deg, var(--rose-deep), var(--sky-deep) 38%, var(--sage-deep) 68%, var(--lavender-deep));
+  border-radius:0 4px 4px 0;
+}
+
+/* ---------- BARRE DU HAUT ---------- */
 .topbar{
-  position:sticky;top:0;z-index:10;
-  background:color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter:blur(10px);
+  position:sticky;top:0;z-index:40;
+  background:rgba(251,247,242,0.94);
   border-bottom:1px solid var(--line);
 }
-.topbar-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 24px;}
-.topbar a{font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:700;text-decoration:none;white-space:nowrap;}
-.back-link{color:var(--lavender-deep);}
-.skip-link{color:#fff;background:var(--rose-deep);padding:9px 18px;border-radius:999px;transition:transform 0.15s ease;}
-.skip-link:hover{transform:translateY(-1px);}
+.topbar-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:9px var(--pad-x);min-height:var(--topbar-h);
+}
+.topbar a{
+  font-family:'Nunito',sans-serif;font-size:var(--fs-sm);font-weight:700;
+  text-decoration:none;white-space:nowrap;
+  display:inline-flex;align-items:center;min-height:44px;
+}
+.back-link{color:var(--lavender-deep);padding-right:6px;}
+.skip-link{color:#fff;background:var(--rose-deep);padding:0 20px;border-radius:999px;}
+@media (hover:hover){.skip-link:hover{transform:translateY(-1px);}}
 
-/* ---------- STORY HERO ---------- */
-.story-hero{text-align:center;padding:40px 26px 14px;max-width:760px;margin-left:auto;margin-right:auto;position:relative;}
-.story-eyebrow{font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose-deep);margin:0 0 8px;}
-.story-title{font-size:clamp(2.1rem,8vw,2.8rem);line-height:1.15;font-style:italic;}
-.story-sub{margin-top:8px;font-size:0.95rem;color:var(--ink-muted);max-width:36ch;margin-left:auto;margin-right:auto;line-height:1.5;}
+/* ---------- RETOUR EN HAUT ---------- */
+.to-top{
+  position:fixed;z-index:55;
+  right:max(14px, env(safe-area-inset-right));
+  bottom:calc(16px + env(safe-area-inset-bottom));
+  width:48px;height:48px;border-radius:50%;border:none;
+  background:var(--rose-deep);color:#fff;font-size:1.2rem;line-height:1;cursor:pointer;
+  box-shadow:0 14px 28px -12px rgba(206,122,115,0.75);
+  opacity:0;transform:translateY(10px);pointer-events:none;
+  transition:opacity 0.3s ease, transform 0.3s ease;
+}
+.to-top.is-visible{opacity:1;transform:none;pointer-events:auto;}
+
+/* ---------- OUVERTURE ---------- */
+.story-hero{
+  text-align:center;position:relative;overflow:hidden;
+  padding:var(--space-y) var(--pad-x) 14px;
+  max-width:760px;margin-left:auto;margin-right:auto;
+}
+.story-eyebrow{font-size:var(--fs-xs);font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose-deep);margin:0 0 8px;}
+.story-title{font-size:var(--fs-xl);line-height:1.12;font-style:italic;}
+.story-sub{margin:10px auto 0;font-size:var(--fs-base);color:var(--ink-muted);max-width:34ch;line-height:1.55;}
 
 .opener-photo{
-  max-width:900px;margin:16px auto 0;border-radius:28px;overflow:hidden;aspect-ratio:16/10;
+  max-width:900px;
+  margin:20px var(--pad-x) 0;
+  border-radius:clamp(18px, 4vw, 28px);overflow:hidden;aspect-ratio:16/10;
   box-shadow:0 24px 50px -28px rgba(150,110,110,0.4);
-  border:10px solid #fff;
+  border:clamp(6px, 1.8vw, 10px) solid #fff;
 }
-.opener-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:18px;}
-.opener-caption{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--ink-muted);margin:10px 20px 0;}
+@media (min-width:940px){.opener-photo{margin-left:auto;margin-right:auto;}}
+.opener-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:12px;}
+.opener-caption{
+  text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:var(--fs-md);color:var(--ink-muted);margin:12px var(--pad-x) 0;
+}
 
 .reveal{opacity:0;transform:translateY(14px);transition:opacity 0.8s ease, transform 0.8s ease;}
 .reveal.is-visible{opacity:1;transform:translateY(0);}
 
-/* ---------- CHAPTERS ---------- */
-.chapter{padding:30px 0 8px;position:relative;}
-.chapter-head{text-align:center;padding:0 24px;margin-bottom:4px;max-width:700px;margin-left:auto;margin-right:auto;position:relative;}
-.chapter-label{font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose-deep);margin:0 0 6px;}
-.chapter-title{font-size:1.7rem;margin-bottom:6px;font-style:italic;}
-.chapter-sub{font-size:0.95rem;color:var(--ink-muted);max-width:38ch;margin:0 auto;line-height:1.5;}
+/* ---------- CHAPITRES ---------- */
+.chapter{padding:var(--space-y) 0 8px;position:relative;overflow:hidden;scroll-margin-top:calc(var(--topbar-h) + 10px);}
+.chapter-head{text-align:center;padding:0 var(--pad-x);margin:0 auto 6px;max-width:700px;position:relative;}
+.chapter-label{font-size:var(--fs-xs);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose-deep);margin:0 0 8px;}
+.chapter-title{font-size:var(--fs-lg);margin-bottom:8px;font-style:italic;line-height:1.2;}
+.chapter-sub{font-size:var(--fs-sm);color:var(--ink-muted);max-width:38ch;margin:0 auto;line-height:1.55;}
 
-/* ---------- DECKS (album photo grid) ---------- */
-.deck-row{margin-top:22px;max-width:1100px;margin-left:auto;margin-right:auto;}
+/* ---------- ALBUMS ---------- */
+.deck-row{margin:26px auto 0;max-width:1100px;}
 .deck-tag{
-  display:inline-block;margin:0 0 14px 24px;
-  font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
-  color:#fff;padding:6px 16px;border-radius:999px;
+  display:inline-block;margin:0 0 14px var(--pad-x);
+  font-size:var(--fs-xs);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:#fff;padding:7px 18px;border-radius:999px;
 }
 .deck-tag.elle{background:var(--rose-deep);}
 .deck-tag.lui{background:var(--sky-deep);}
-.deck{display:grid;grid-template-columns:repeat(2, 1fr);gap:22px 16px;padding:8px 24px 22px;}
+.deck{
+  display:grid;grid-template-columns:repeat(2, 1fr);
+  gap:26px clamp(12px, 3.5vw, 20px);
+  padding:8px var(--pad-x) 22px;
+}
 @media (min-width:620px){.deck{grid-template-columns:repeat(3, 1fr);}}
 @media (min-width:980px){.deck{grid-template-columns:repeat(4, 1fr);}}
 
 .card{transition:transform 0.2s ease;}
 .card:nth-child(2n){transform:translateY(14px);}
-.card:hover{transform:translateY(-4px) !important;}
+@media (hover:hover){.card:hover{transform:translateY(-4px) !important;}}
 .card-photo{
-  aspect-ratio:3/4;border-radius:16px;overflow:hidden;
+  aspect-ratio:3/4;border-radius:14px;overflow:hidden;
   box-shadow:0 18px 30px -18px rgba(150,110,110,0.45);
-  border:9px solid #fff;
-  border-bottom-width:22px;
+  border:clamp(6px, 2vw, 9px) solid #fff;
+  border-bottom-width:clamp(14px, 5vw, 22px);
   background:#fff;
 }
-.card:nth-child(odd) .card-photo{transform:rotate(-3.5deg);}
-.card:nth-child(even) .card-photo{transform:rotate(2.5deg);}
-.card-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px;}
+.card:nth-child(odd) .card-photo{transform:rotate(-3deg);}
+.card:nth-child(even) .card-photo{transform:rotate(2.2deg);}
+.card-photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:6px;}
 .card-caption{
-  margin-top:10px;text-align:center;
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;
-  color:var(--ink);line-height:1.35;padding:0 4px;
+  margin-top:12px;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:var(--fs-sm);color:var(--ink);line-height:1.4;padding:0 2px;
 }
 
-/* converge deck (trouvés) */
-.deck.converge .card-photo{border-color:#fff;box-shadow:0 20px 36px -18px rgba(221,139,132,0.55);}
-.deck.converge .card:nth-child(1) .card-photo{transform:rotate(-5deg);}
-.deck.converge .card:nth-child(2) .card-photo{transform:rotate(3deg);}
-.deck.converge .card:nth-child(3) .card-photo{transform:rotate(-2.5deg);}
-.deck.converge .card:nth-child(4) .card-photo{transform:rotate(4deg);}
-.deck.converge .card:nth-child(5) .card-photo{transform:rotate(-3.5deg);}
+.deck.converge .card-photo{border-color:#fff;box-shadow:0 20px 36px -18px rgba(206,122,115,0.55);}
+.deck.converge .card:nth-child(1) .card-photo{transform:rotate(-4.5deg);}
+.deck.converge .card:nth-child(2) .card-photo{transform:rotate(2.8deg);}
+.deck.converge .card:nth-child(3) .card-photo{transform:rotate(-2.2deg);}
+.deck.converge .card:nth-child(4) .card-photo{transform:rotate(3.6deg);}
+.deck.converge .card:nth-child(5) .card-photo{transform:rotate(-3.2deg);}
 
-/* ---------- FINALE (épilogue, mise en valeur) ---------- */
-.finale{text-align:center;padding:56px 26px 70px;position:relative;overflow:hidden;}
+/* ---------- ÉPILOGUE ---------- */
+.finale{
+  text-align:center;position:relative;overflow:hidden;
+  padding:var(--space-y) var(--pad-x) calc(var(--space-y) + env(safe-area-inset-bottom));
+  scroll-margin-top:calc(var(--topbar-h) + 10px);
+}
 .finale-photo{
-  position:relative;
-  max-width:640px;margin:0 auto;border-radius:30px;overflow:hidden;
-  aspect-ratio:4/5;
-  border:14px solid #fff;
+  position:relative;max-width:560px;margin:0 auto;
+  border-radius:clamp(20px, 5vw, 30px);overflow:hidden;aspect-ratio:4/5;
+  border:clamp(8px, 2.6vw, 14px) solid #fff;
   box-shadow:0 40px 70px -30px rgba(150,110,110,0.5);
 }
 .finale-photo img{width:100%;height:100%;object-fit:cover;display:block;}
 .finale-caption{
-  font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;
-  margin:24px auto 10px;max-width:32ch;color:var(--ink);
+  font-family:'Cormorant Garamond',serif;font-size:var(--fs-lg);font-style:italic;
+  margin:26px auto 12px;max-width:26ch;color:var(--ink);line-height:1.25;
 }
-.finale p.lede{font-size:0.98rem;color:var(--ink-muted);max-width:36ch;margin:0 auto 26px;line-height:1.65;}
+.finale p.lede{font-size:var(--fs-base);color:var(--ink-muted);max-width:34ch;margin:0 auto 28px;line-height:1.62;}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:'Nunito',sans-serif;font-weight:700;font-size:0.95rem;
-  padding:16px 34px;border-radius:999px;text-decoration:none;
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:'Nunito',sans-serif;font-weight:700;font-size:var(--fs-sm);
+  min-height:52px;padding:14px clamp(24px, 6vw, 34px);
+  border-radius:999px;text-decoration:none;
   background:var(--rose-deep);color:#fff;
-  box-shadow:0 16px 30px -16px rgba(221,139,132,0.6);
+  box-shadow:0 16px 30px -16px rgba(206,122,115,0.65);
   transition:transform 0.2s ease;
 }
-.btn:hover{transform:translateY(-2px);}
-a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:4px;}
+@media (hover:hover){.btn:hover{transform:translateY(-2px);}}
+a:focus-visible, button:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:4px;}
 </style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+<button class="to-top" id="to-top" type="button" aria-label="Revenir en haut de la page">↑</button>
 
 <div class="page">
 
   <div class="topbar">
     <div class="topbar-inner">
       <a class="back-link" href="index.html">← Le mariage</a>
-      <a class="skip-link" href="index.html#infos-pratiques">Passer aux infos →</a>
+      <a class="skip-link" href="index.html#compte">Passer aux infos →</a>
     </div>
   </div>
 
@@ -157,12 +255,12 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
   </header>
 
   <div class="opener-photo reveal">
-    <img src="photos/00-intro.jpg" alt="" loading="lazy">
+    <img src="photos/histoire-01-ouverture.jpg" alt="" loading="lazy" decoding="async">
   </div>
   <p class="opener-caption reveal">C'est l'histoire de deux personnes…</p>
 
-  <!-- ============ CHAPITRE I : ILS MARCHENT ============ -->
-  <section class="chapter">
+  <!-- ============ CHAPITRE I ============ -->
+  <section class="chapter" id="chapitre-1">
     <div class="chapter-head reveal">
       <p class="chapter-label">Chapitre I</p>
       <h2 class="chapter-title">Ils marchent, en même temps, chacun de leur côté</h2>
@@ -173,27 +271,27 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
       <span class="deck-tag elle">Elle</span>
       <div class="deck">
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-01.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-02-ch1-elle-1.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Elle cherche… (il est peut-être là ?)</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-02.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-02-ch1-elle-2.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Elle cherche encore, dans les endroits les plus escarpés…</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-03.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-02-ch1-elle-3.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Elle marche, se demande si c'est la maison de son prince charmant</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-04.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-02-ch1-elle-4.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Elle marche.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-05.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-02-ch1-elle-5.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Elle marche, cherche son chemin.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-06.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-02-ch1-elle-6.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Elle marche encore.</p>
         </div>
       </div>
@@ -203,27 +301,27 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
       <span class="deck-tag lui">Lui</span>
       <div class="deck">
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-01.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-03-ch1-lui-1.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Il marche.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-02.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-03-ch1-lui-2.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Il marche encore.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-03.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-03-ch1-lui-3.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Il marche toujours.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-04.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-03-ch1-lui-4.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Il marche, lui aussi, sans trop savoir où il va.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CHAPITRE II : RESPONSABLES ============ -->
-  <section class="chapter" style="background:var(--surface-2);">
+  <!-- ============ CHAPITRE II ============ -->
+  <section class="chapter" id="chapitre-2" style="background:var(--surface-2);">
     <div class="chapter-head reveal">
       <p class="chapter-label">Chapitre II</p>
       <h2 class="chapter-title">Deux adultes très responsables</h2>
@@ -234,27 +332,27 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
       <span class="deck-tag elle">Elle, responsable</span>
       <div class="deck">
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-resp-01.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-04-ch2-elle-1.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Une femme responsable (glace Schtroumpf, mais responsable)</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-resp-02.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-04-ch2-elle-2.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Une femme responsable, en pleine fête</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-resp-03.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-04-ch2-elle-3.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Queen.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-resp-04.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-04-ch2-elle-4.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Queen, acte 2.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-resp-05.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-04-ch2-elle-5.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Pas de flûte avec elle — juste elle.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/elle-resp-06.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-04-ch2-elle-6.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Queen, acte 3.</p>
         </div>
       </div>
@@ -264,35 +362,35 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
       <span class="deck-tag lui">Lui, responsable</span>
       <div class="deck">
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-resp-01.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-05-ch2-lui-1.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Un homme responsable.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-resp-02.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-05-ch2-lui-2.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Un homme responsable, épisode 2.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-resp-03.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-05-ch2-lui-3.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Un homme responsable, épisode 3.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-resp-04.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-05-ch2-lui-4.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Il était bien entouré.</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-resp-05.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-05-ch2-lui-5.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Quand il cherche bien, il trouve. Pan, pan !</p>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="photos/lui-resp-06.jpg" alt="" loading="lazy"></div>
+          <div class="card-photo"><img src="photos/histoire-05-ch2-lui-6.jpg" alt="" loading="lazy" decoding="async"></div>
           <p class="card-caption">Un homme responsable, version escalade.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CHAPITRE III : ILS SE TROUVENT ============ -->
-  <section class="chapter">
+  <!-- ============ CHAPITRE III ============ -->
+  <section class="chapter" id="chapitre-3">
     <div class="chapter-head reveal">
       <p class="chapter-label">Chapitre III</p>
       <h2 class="chapter-title">Et puis, ils se sont trouvés !</h2>
@@ -300,25 +398,25 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
     </div>
     <div class="deck-row reveal">
       <div class="deck converge">
-        <div class="card"><div class="card-photo"><img src="photos/trouve-01.jpg" alt="" loading="lazy"></div></div>
-        <div class="card"><div class="card-photo"><img src="photos/trouve-02.jpg" alt="" loading="lazy"></div></div>
-        <div class="card"><div class="card-photo"><img src="photos/trouve-03.jpg" alt="" loading="lazy"></div></div>
-        <div class="card"><div class="card-photo"><img src="photos/trouve-04.jpg" alt="" loading="lazy"></div></div>
-        <div class="card"><div class="card-photo"><img src="photos/trouve-05.jpg" alt="" loading="lazy"></div></div>
+        <div class="card"><div class="card-photo"><img src="photos/histoire-06-ch3-trouves-1.jpg" alt="" loading="lazy" decoding="async"></div></div>
+        <div class="card"><div class="card-photo"><img src="photos/histoire-06-ch3-trouves-2.jpg" alt="" loading="lazy" decoding="async"></div></div>
+        <div class="card"><div class="card-photo"><img src="photos/histoire-06-ch3-trouves-3.jpg" alt="" loading="lazy" decoding="async"></div></div>
+        <div class="card"><div class="card-photo"><img src="photos/histoire-06-ch3-trouves-4.jpg" alt="" loading="lazy" decoding="async"></div></div>
+        <div class="card"><div class="card-photo"><img src="photos/histoire-06-ch3-trouves-5.jpg" alt="" loading="lazy" decoding="async"></div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FINALE — ÉPILOGUE ============ -->
-  <footer class="finale reveal">
+  <!-- ============ ÉPILOGUE ============ -->
+  <footer class="finale reveal" id="epilogue">
     <div class="blob" style="width:340px;height:340px;background:var(--rose);top:20px;left:50%;transform:translateX(-50%);opacity:0.4;"></div>
     <p class="chapter-label" style="position:relative;">Épilogue</p>
     <div class="finale-photo">
-      <img src="photos/finale.jpg" alt="" loading="lazy">
+      <img src="photos/histoire-07-epilogue.jpg" alt="" loading="lazy" decoding="async">
     </div>
     <p class="finale-caption">Et depuis, ils ne marchent plus l'un sans l'autre.</p>
     <p class="lede">La suite, vous la connaissez déjà un peu : une grange, un pré, deux ânes, et nous deux. Il ne manque plus que vous.</p>
-    <a class="btn" href="index.html#infos-pratiques">Voir les infos du mariage →</a>
+    <a class="btn" href="index.html#compte">Voir les infos du mariage →</a>
   </footer>
 
 </div>
@@ -339,5 +437,30 @@ a:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-rad
   } else {
     reveals.forEach(function(el){ el.classList.add('is-visible'); });
   }
+
+  var bar   = document.getElementById('progress-bar');
+  var toTop = document.getElementById('to-top');
+  var ticking = false;
+
+  function update(){
+    ticking = false;
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var y   = window.scrollY || doc.scrollTop;
+    bar.style.width = (max > 0 ? Math.min(1, y/max) * 100 : 0) + '%';
+    toTop.classList.toggle('is-visible', y > window.innerHeight * 1.2);
+  }
+
+  window.addEventListener('scroll', function(){
+    if(!ticking){ ticking = true; requestAnimationFrame(update); }
+  }, {passive:true});
+  window.addEventListener('resize', update, {passive:true});
+  update();
+
+  toTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
 })();
 </script>
+</body>
+</html>
