@@ -36,6 +36,7 @@
   --lavender:#DDD2EA;
   --lavender-deep:#9B7FB8;
   --line:#EEE1D3;
+  --intro-top:#CFE5EC;
   --shadow: 0 18px 42px -26px rgba(150,110,110,0.35);
 
   /* échelle typographique fluide */
@@ -200,8 +201,9 @@ img{max-width:100%;}
   z-index:1;
 }
 .hero-content{
-  position:relative;z-index:2;
-  padding:28px var(--pad-x) calc(38px + env(safe-area-inset-bottom));
+  position:relative;z-index:3;
+  /* dégage la vague qui remonte dans la photo */
+  padding:28px var(--pad-x) calc(clamp(52px, 9vw, 96px) + env(safe-area-inset-bottom));
   color:#FFF9F4;
 }
 .eyebrow{
@@ -233,8 +235,7 @@ section{
 /* ---------- INTRO EN VAGUES ---------- */
 .intro{
   text-align:center;
-  background:linear-gradient(168deg, #CFE5EC 0%, #E7F2F6 48%, #F6EAE7 100%);
-  padding-top:calc(var(--space-y) + 2.2rem);
+  background:linear-gradient(168deg, var(--intro-top) 0%, #E7F2F6 48%, #F6EAE7 100%);
   padding-bottom:calc(var(--space-y) + 2.2rem);
 }
 .wave{
@@ -426,6 +427,9 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
       <img src="photos/accueil-01-couverture.jpg" alt="Awéna et Grégoire" fetchpriority="high" decoding="async">
     </div>
     <div class="hero-veil"></div>
+    <svg class="wave wave-bottom" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,90 H1440 V48 C1240,6 1082,78 862,56 C642,34 420,2 220,28 C142,38 70,46 0,40 Z" fill="var(--intro-top)"/>
+    </svg>
     <div class="hero-content">
       <p class="eyebrow">Notre mariage</p>
       <h1 class="hero-names" id="cfg-names">Awéna &amp; Grégoire</h1>
@@ -437,10 +441,6 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
 
   <!-- ============ INTRO ============ -->
   <section class="intro reveal" id="le-mot">
-    <svg class="wave wave-top" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0,0 H1440 V40 C1220,82 1080,14 860,34 C640,54 420,88 220,62 C142,52 70,44 0,50 Z" fill="var(--bg)"/>
-    </svg>
-
     <div class="blob" style="width:220px;height:220px;background:var(--rose);top:-40px;left:-60px;opacity:0.5;"></div>
     <div class="blob" style="width:180px;height:180px;background:var(--lavender);bottom:-30px;right:-40px;opacity:0.45;"></div>
 
@@ -546,7 +546,8 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
   // ------------------------------------------------------------------
   var CONFIG = {
     names: "Awéna & Grégoire",
-    weddingDateISO: "2027-04-24T16:30:00",
+    weddingDateISO: "2027-04-24T17:00:00",
+    weddingEndISO:  "2027-04-25T03:30:00",
     weddingDateLong: "Samedi 24 avril 2027",
     venueName: "La Ferme de la Faisanderie",
     venueAddress: "Route de Rennemoulin, 78450 Villepreux",
@@ -569,14 +570,15 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
     "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(CONFIG.mapsQuery);
 
   var d = new Date(CONFIG.weddingDateISO);
-  var calStart = CONFIG.weddingDateISO.replace(/[-:]/g,'').split('.')[0];
-  var dEnd = new Date(d.getTime() + 6*60*60*1000);
-  var calEnd = dEnd.toISOString().replace(/[-:]/g,'').split('.')[0];
+
+  // ctz=Europe/Paris : sans ça Google interprète ces heures dans le fuseau du visiteur
+  function calStamp(iso){ return iso.replace(/[-:]/g,''); }
   document.getElementById('cfg-calendar-link').href =
     "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" +
     encodeURIComponent("Mariage de " + CONFIG.names) +
-    "&dates=" + calStart + "/" + calEnd +
-    "&location=" + encodeURIComponent(CONFIG.venueName) +
+    "&dates=" + calStamp(CONFIG.weddingDateISO) + "/" + calStamp(CONFIG.weddingEndISO) +
+    "&ctz=Europe/Paris" +
+    "&location=" + encodeURIComponent(CONFIG.venueName + ", " + CONFIG.venueAddress) +
     "&details=" + encodeURIComponent("On vous attend !");
 
   function wireExternalButton(id, url){
