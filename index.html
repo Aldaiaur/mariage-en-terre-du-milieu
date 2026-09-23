@@ -14,6 +14,9 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="icon" type="image/png" sizes="32x32" href="photos/icone-32.png">
+<link rel="apple-touch-icon" href="photos/icone-180.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap">
@@ -123,7 +126,10 @@ img{max-width:100%;}
   padding:8px 4px;border-radius:999px;
   background:rgba(255,253,250,0.72);
   box-shadow:0 10px 26px -18px rgba(120,90,90,0.5);
+  transition:opacity 0.3s ease, visibility 0.3s ease;
 }
+/* le rail flotte pile sur le bord droit des champs du formulaire : on l'efface là */
+.dot-rail.is-hidden{opacity:0;visibility:hidden;pointer-events:none;}
 .dot-rail a{
   position:relative;
   display:flex;align-items:center;justify-content:center;
@@ -169,7 +175,8 @@ img{max-width:100%;}
 /* ---------- HERO ---------- */
 .hero{
   position:relative;
-  min-height:min(82svh, 720px);
+  min-height:min(82vh, 720px);
+  min-height:min(82svh, 720px); /* svh ignoré par les vieux navigateurs, vh prend le relais */
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
@@ -250,7 +257,7 @@ section{
   font-family:'Cormorant Garamond',serif;
   font-size:var(--fs-lg);font-style:italic;font-weight:500;line-height:1.45;
   color:#33454F;
-  max-width:24ch;margin:0 auto;
+  max-width:30ch;margin:0 auto;
 }
 
 .section-head{text-align:center;margin:0 auto 28px;max-width:900px;}
@@ -290,7 +297,7 @@ section{
   color:#3C3339;display:block;
 }
 .count-label{
-  font-size:clamp(0.6rem, 2.4vw, 0.72rem);
+  font-size:clamp(0.7rem, 2.4vw, 0.78rem);
   font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
   color:#3C3339;opacity:0.62;
 }
@@ -380,7 +387,7 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--rose-deep);outline
 }
 .stay-list li{
   display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
-  gap:2px 18px;
+  gap:8px 18px;
   padding:clamp(16px, 4vw, 20px) clamp(20px, 5vw, 28px);
   border-bottom:1px solid var(--line);
 }
@@ -456,6 +463,9 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
   box-shadow:0 16px 32px -14px rgba(0,0,0,0.55);
 }
 </style>
+
+<!-- sans JS, les .reveal resteraient à opacity:0 et la page serait vide -->
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -479,13 +489,13 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
 <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
 <nav class="dot-rail" id="dot-rail" aria-label="Navigation par section">
-  <a href="#accueil"  data-label="Accueil"><i></i></a>
-  <a href="#le-mot"   data-label="Le mot"><i></i></a>
-  <a href="#compte"   data-label="Compte à rebours"><i></i></a>
-  <a href="#infos-pratiques" data-label="Infos pratiques"><i></i></a>
-  <a href="#hebergements" data-label="Hébergements"><i></i></a>
-  <a href="#reponse"  data-label="Votre réponse"><i></i></a>
-  <a href="#cagnotte" data-label="Cagnotte"><i></i></a>
+  <a href="#accueil"         data-label="Accueil"          aria-label="Aller à : Accueil"><i></i></a>
+  <a href="#le-mot"          data-label="Le mot"           aria-label="Aller à : Le mot"><i></i></a>
+  <a href="#compte"          data-label="Compte à rebours" aria-label="Aller à : Compte à rebours"><i></i></a>
+  <a href="#infos-pratiques" data-label="Infos pratiques"  aria-label="Aller à : Infos pratiques"><i></i></a>
+  <a href="#hebergements"    data-label="Hébergements"     aria-label="Aller à : Hébergements"><i></i></a>
+  <a href="#reponse"         data-label="Votre réponse"    aria-label="Aller à : Votre réponse"><i></i></a>
+  <a href="#cagnotte"        data-label="Cagnotte"         aria-label="Aller à : Cagnotte"><i></i></a>
 </nav>
 
 <button class="to-top" id="to-top" type="button" aria-label="Revenir en haut de la page">↑</button>
@@ -707,6 +717,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
   document.getElementById('cfg-countdown-date').textContent = CONFIG.weddingDateLong;
   document.getElementById('cfg-venue-name').textContent = CONFIG.venueName;
   document.getElementById('cfg-venue-address').textContent = CONFIG.venueAddress;
+  document.getElementById('cfg-hero-place').textContent = CONFIG.venueName;
   document.getElementById('cfg-rsvp-deadline').textContent = "Merci de répondre avant le " + CONFIG.rsvpDeadline;
 
   document.getElementById('cfg-maps-link').href =
@@ -746,7 +757,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
     document.getElementById('cd-secs').textContent  = String(Math.floor(diff/1000)%60).padStart(2,'0');
   }
   tick();
-  setInterval(tick, 1000);
+  var timer = setInterval(tick, 1000);
 
   // ---------- apparitions au scroll ----------
   var reveals = document.querySelectorAll('.reveal');
@@ -803,6 +814,19 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
 
   toTop.addEventListener('click', function(){
     window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // masque le rail tant que le formulaire est à l'écran
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries){
+      rail.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }, {threshold:0}).observe(document.getElementById('reponse'));
+  }
+
+  // le compte à rebours n'a aucune raison de tourner onglet fermé
+  document.addEventListener('visibilitychange', function(){
+    clearInterval(timer);
+    if(!document.hidden){ tick(); timer = setInterval(tick, 1000); }
   });
 })();
 </script>

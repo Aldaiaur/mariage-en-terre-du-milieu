@@ -14,6 +14,9 @@
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 
+<link rel="icon" type="image/png" sizes="32x32" href="photos/icone-32.png">
+<link rel="apple-touch-icon" href="photos/icone-180.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Nunito:wght@400;500;600;700;800&display=swap">
@@ -126,7 +129,6 @@ img{max-width:100%;}
   display:flex;align-items:center;justify-content:center;
   width:30px;height:30px;
   text-decoration:none;-webkit-tap-highlight-color:transparent;
-  min-height:0;
 }
 .dot-rail i{
   display:block;width:8px;height:8px;border-radius:999px;
@@ -270,17 +272,20 @@ img{max-width:100%;}
 @media (hover:hover){.btn:hover{transform:translateY(-2px);}}
 a:focus-visible, button:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:4px;}
 </style>
+
+<!-- sans JS, les .reveal resteraient à opacity:0 et la page serait vide -->
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
 <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
 <nav class="dot-rail" id="dot-rail" aria-label="Navigation par chapitre">
-  <a href="#ouverture"  data-label="Ouverture"><i></i></a>
-  <a href="#chapitre-1" data-label="Chapitre I"><i></i></a>
-  <a href="#chapitre-2" data-label="Chapitre II"><i></i></a>
-  <a href="#chapitre-3" data-label="Chapitre III"><i></i></a>
-  <a href="#epilogue"   data-label="Épilogue"><i></i></a>
+  <a href="#ouverture"  data-label="Ouverture"    aria-label="Aller à : Ouverture"><i></i></a>
+  <a href="#chapitre-1" data-label="Chapitre I"   aria-label="Aller au chapitre I"><i></i></a>
+  <a href="#chapitre-2" data-label="Chapitre II"  aria-label="Aller au chapitre II"><i></i></a>
+  <a href="#chapitre-3" data-label="Chapitre III" aria-label="Aller au chapitre III"><i></i></a>
+  <a href="#epilogue"   data-label="Épilogue"     aria-label="Aller à : Épilogue"><i></i></a>
 </nav>
 
 <button class="to-top" id="to-top" type="button" aria-label="Revenir en haut de la page">↑</button>
