@@ -333,6 +333,69 @@ a:focus-visible, button:focus-visible{outline:2px solid var(--rose-deep);outline
   border-bottom:1.5px solid currentColor;font-weight:700;
 }
 
+/* ---------- HÉBERGEMENTS ---------- */
+.section-intro{
+  font-size:var(--fs-base);color:var(--ink-muted);
+  max-width:46ch;margin:14px auto 0;line-height:1.6;
+}
+.stay-group{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;
+  font-size:var(--fs-lg);color:var(--ink);
+  text-align:center;margin:0;line-height:1.2;
+}
+.stay-group span{
+  display:block;font-family:'Nunito',sans-serif;font-style:normal;
+  font-size:var(--fs-xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--rose-deep);margin-top:10px;
+}
+.stay-grid{
+  display:grid;grid-template-columns:1fr;gap:clamp(14px, 3vw, 22px);
+  max-width:1160px;margin:24px auto 0;
+}
+@media (min-width:680px){.stay-grid{grid-template-columns:1fr 1fr;}}
+.stay-card{
+  background:var(--surface);border-radius:clamp(18px, 4vw, 24px);
+  padding:clamp(22px, 5vw, 30px) clamp(20px, 5vw, 28px);
+  box-shadow:var(--shadow);
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.stay-card h4{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;
+  font-size:var(--fs-md);color:var(--ink);margin:0 0 8px;line-height:1.22;
+}
+.stay-dist{
+  font-size:var(--fs-xs);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--sage-deep);margin:0 0 10px;
+}
+.stay-card p{margin:0;font-size:var(--fs-sm);line-height:1.6;color:var(--ink-muted);}
+.stay-card a{
+  margin-top:16px;
+  font-size:var(--fs-sm);font-weight:700;color:var(--rose-deep);
+  text-decoration:none;border-bottom:1.5px solid currentColor;padding:4px 0;
+}
+.stay-list{
+  list-style:none;padding:0;margin:24px auto 0;max-width:860px;
+  background:var(--surface);border-radius:clamp(18px, 4vw, 24px);
+  box-shadow:var(--shadow);overflow:hidden;
+}
+.stay-list li{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:2px 18px;
+  padding:clamp(16px, 4vw, 20px) clamp(20px, 5vw, 28px);
+  border-bottom:1px solid var(--line);
+}
+.stay-list li:last-child{border-bottom:none;}
+.stay-list b{
+  font-family:'Cormorant Garamond',serif;font-weight:600;font-style:italic;
+  font-size:var(--fs-md);color:var(--ink);line-height:1.25;
+}
+.stay-list a{
+  font-size:var(--fs-sm);font-weight:700;color:var(--rose-deep);
+  text-decoration:none;border-bottom:1.5px solid currentColor;
+  white-space:nowrap;padding:4px 0;
+}
+.stay-sep{margin-top:clamp(2.4rem, 5vw, 3.6rem);}
+
 /* ---------- CTA ---------- */
 .cta-section{
   text-align:center;background:var(--surface);
@@ -413,6 +476,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
   <a href="#le-mot"   data-label="Le mot"><i></i></a>
   <a href="#compte"   data-label="Compte à rebours"><i></i></a>
   <a href="#infos-pratiques" data-label="Infos pratiques"><i></i></a>
+  <a href="#hebergements" data-label="Hébergements"><i></i></a>
   <a href="#reponse"  data-label="Votre réponse"><i></i></a>
   <a href="#cagnotte" data-label="Cagnotte"><i></i></a>
 </nav>
@@ -500,6 +564,70 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
         <p id="cfg-food">Traiteurs locaux, produits de saison, bière brassée directement à la ferme — tout est pensé pour être bon, pour vous comme pour la planète. Allergies ou régimes particuliers : dites-le-nous sur le formulaire.</p>
       </div>
     </div>
+  </section>
+
+  <!-- ============ HÉBERGEMENTS ============ -->
+  <section class="reveal" id="hebergements">
+    <div class="blob" style="width:220px;height:220px;background:var(--sage);top:30px;right:-70px;opacity:0.4;"></div>
+    <div class="section-head">
+      <p class="section-eyebrow">Où dormir</p>
+      <h2 class="section-title">Hébergements</h2>
+      <p class="section-intro">Quelques adresses repérées autour de la ferme. Pensez à réserver tôt, le printemps est une saison très demandée dans le coin.</p>
+    </div>
+
+    <h3 class="stay-group">Gîtes et maisons</h3>
+    <div class="stay-grid">
+      <article class="stay-card">
+        <h4>Le Gîte de la Ferme de Pontaly</h4>
+        <p class="stay-dist">À 10 min</p>
+        <p>Une véritable ferme agricole spécialisée en grandes cultures bio. Elle possède 3 gîtes, de 4 à 8 personnes.</p>
+        <a href="https://www.fermedepontaly.fr" target="_blank" rel="noopener">fermedepontaly.fr →</a>
+      </article>
+      <article class="stay-card">
+        <h4>La Ferme de Mezu</h4>
+        <p class="stay-dist">À 5 min</p>
+        <p>Jolie ferme équestre et céréalière à Chavenay, en plein milieu des champs. 2 gîtes ruraux (4 et 6 personnes). Réservation sur Gîtes de France.</p>
+      </article>
+      <article class="stay-card">
+        <h4>Le Val Trebbia</h4>
+        <p>Maison d'hôtes située à Feucherolles.</p>
+        <a href="https://val-trebbia.fr" target="_blank" rel="noopener">val-trebbia.fr →</a>
+      </article>
+      <article class="stay-card">
+        <h4>Le Moulin de Champie</h4>
+        <p class="stay-dist">À 15 min</p>
+        <p>Grande maison à louer, à quinze minutes de la ferme.</p>
+        <a href="https://www.moulindechampie.com" target="_blank" rel="noopener">moulindechampie.com →</a>
+      </article>
+    </div>
+
+    <h3 class="stay-group stay-sep">Hôtels<span>Un peu plus éloigné — environ 10 min en voiture</span></h3>
+    <ul class="stay-list">
+      <li>
+        <b>Appart'City Versailles Saint-Cyr-l'École</b>
+        <a href="https://www.appartcity.com" target="_blank" rel="noopener">appartcity.com →</a>
+      </li>
+      <li>
+        <b>Best Western Paris Saint-Quentin</b>
+        <a href="https://www.bestwestern.fr" target="_blank" rel="noopener">bestwestern.fr →</a>
+      </li>
+      <li>
+        <b>Hôtel B&amp;B Rocquencourt</b>
+        <a href="https://www.hotel-bb.com" target="_blank" rel="noopener">hotel-bb.com →</a>
+      </li>
+      <li>
+        <b>Hôtel Première Classe Versailles Saint-Cyr-l'École</b>
+        <a href="https://www.premiereclasse.com" target="_blank" rel="noopener">premiereclasse.com →</a>
+      </li>
+      <li>
+        <b>Ibis Budget Versailles Château Saint-Cyr</b>
+        <a href="https://www.accorhotels.com" target="_blank" rel="noopener">accorhotels.com →</a>
+      </li>
+      <li>
+        <b>La Clémencerie</b>
+        <a href="https://www.chambres-hotes.fr" target="_blank" rel="noopener">chambres-hotes.fr →</a>
+      </li>
+    </ul>
   </section>
 
   <!-- ============ RSVP ============ -->
