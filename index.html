@@ -183,6 +183,14 @@ img{max-width:100%;}
   overflow:hidden;
   isolation:isolate;
 }
+/* la hauteur du hero tombe souvent sur un demi-pixel : sans ce liseré plein,
+   la dernière ligne de la photo réapparaît sous la vague */
+.hero::after{
+  content:"";
+  position:absolute;left:0;right:0;bottom:-1px;
+  height:5px;background:var(--intro-top);
+  z-index:2;pointer-events:none;
+}
 .hero-photo{position:absolute;inset:0;overflow:hidden;}
 .hero-photo img{
   width:100%;height:100%;
@@ -242,7 +250,9 @@ section{
 /* ---------- INTRO EN VAGUES ---------- */
 .intro{
   text-align:center;
-  background:linear-gradient(168deg, var(--intro-top) 0%, #E7F2F6 48%, #F6EAE7 100%);
+  /* dégradé vertical : en biais, le bord haut n'est pas uniforme et laisse
+     une couture visible là où la vague, elle, est d'un bleu plat */
+  background:linear-gradient(180deg, var(--intro-top) 0%, #E7F2F6 48%, #F6EAE7 100%);
   padding-bottom:calc(var(--space-y) + 2.2rem);
 }
 .wave{
@@ -569,7 +579,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
       <div class="info-card">
         <div class="icon-badge"><svg><use href="#ico-clock"/></svg></div>
         <h3>Le programme</h3>
-        <p id="cfg-schedule">Un weekend à la ferme : mariage à la mairie de Bailly, cocktail au milieu des champs, dîner sous la charpente, et DJ pour les démons de minuit et jusqu'au bout de la nuit !</p>
+        <p id="cfg-schedule">Un week-end à la ferme : mariage à la mairie de Bailly, cocktail au milieu des champs, dîner sous la charpente, et DJ pour les démons de minuit et jusqu'au bout de la nuit !</p>
       </div>
       <div class="info-card">
         <div class="icon-badge"><svg><use href="#ico-shirt"/></svg></div>
@@ -579,7 +589,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
       <div class="info-card">
         <div class="icon-badge"><svg><use href="#ico-food"/></svg></div>
         <h3>À table</h3>
-        <p id="cfg-food">Au programme le samedi : un cocktail aux diverses bouchées gourmandes, champagne, spritz, bières de la brasserie locale Toussaint à Noisy — tout est pensé pour être gourmand. Un buffet chaud pour la suite. Régalez-vous à votre guise, libre service et placement libre ! À partir de 17h00.</p>
+        <p id="cfg-food">Au programme le samedi : un cocktail aux diverses bouchées gourmandes, champagne, spritz, bières de la brasserie locale Toussaint à Noisy — tout est pensé pour être gourmand. Un buffet chaud pour la suite. Régalez-vous à votre guise, libre-service et placement libre ! À partir de 17h00.</p>
         <p style="margin-top:14px;">Et le dimanche, un petit déjeuner en toute simplicité pour les moins défaits de la soirée. À partir de 10h30.</p>
       </div>
     </div>
@@ -673,7 +683,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
       </div>
 
       <p class="rsvp-fallback">Le formulaire ne s'affiche pas ? <a id="cfg-rsvp-link" href="#" target="_blank" rel="noopener">Ouvrez-le dans un nouvel onglet →</a></p>
-      <p class="rsvp-deadline" id="cfg-rsvp-deadline">Merci de répondre avant le [date à préciser]</p>
+      <p class="rsvp-deadline" id="cfg-rsvp-deadline">Merci de répondre avant le 1er février 2027</p>
     </div>
   </section>
 
