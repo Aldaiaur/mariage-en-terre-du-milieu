@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FBF7F2">
-<title>Awéna &amp; Grégoire — 24 avril 2027</title>
-<meta name="description" content="On se marie le 24 avril 2027 à la Ferme de la Faisanderie. Toutes les infos, le compte à rebours et notre histoire.">
+<title>Awéna &amp; Grégoire - 24 avril 2027</title>
+<meta name="description" content="Eh oui, nous nous marions ! Rendez-vous le 24 avril 2027 à la Ferme de la Faisanderie. Infos pratiques, hébergements et confirmation de présence.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Awéna & Grégoire - 24 avril 2027">
-<meta property="og:description" content="On se marie à la Ferme de la Faisanderie. On serait ravis de vous avoir à nos côtés.">
+<meta property="og:description" content="Eh oui, nous nous marions ! Rendez-vous le 24 avril 2027 à la Ferme de la Faisanderie.">
 <meta property="og:image" content="https://mariage-en-terre-du-milieu.site/photos/accueil-01-couverture.jpg">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,7 +26,6 @@
   color-scheme:light;
   --bg:#FBF7F2;
   --surface:#FFFFFF;
-  --surface-2:#F7EEE6;
   --ink:#4A4048;
   --ink-muted:#7D7069;
   --rose:#F2C9C4;
@@ -35,7 +34,6 @@
   --sky-deep:#6BA0B7;
   --sage:#CFDAC2;
   --sage-deep:#849C6E;
-  --sand:#EAD9C1;
   --lavender:#DDD2EA;
   --lavender-deep:#9B7FB8;
   --line:#EEE1D3;
@@ -54,7 +52,6 @@
   /* échelle d'espacement fluide */
   --pad-x:   clamp(1.25rem, 0.9rem + 1.6vw, 2.5rem);
   --space-y: clamp(3rem, 2rem + 4vw, 5.5rem);
-  --rail-w:  46px;
 }
 
 *{box-sizing:border-box;}
@@ -95,7 +92,7 @@ body{
 
 .page{position:relative;z-index:1;}
 
-h1,h2,h3,.display{
+h1,h2,h3{
   font-family:'Cormorant Garamond',serif;
   font-weight:600;
   text-wrap:balance;
@@ -525,7 +522,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
     <div class="hero-content">
       <p class="eyebrow">Notre mariage</p>
       <h1 class="hero-names" id="cfg-names">Awéna &amp; Grégoire</h1>
-      <p class="hero-date" id="cfg-date-long">Samedi — date à venir</p>
+      <p class="hero-date" id="cfg-date-long">Samedi 24 avril 2027</p>
       <p class="hero-place" id="cfg-hero-place">La Ferme de la Faisanderie, Villepreux</p>
       <p class="hero-scroll"><span class="chev">↓</span> faites défiler</p>
     </div>
@@ -724,6 +721,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
     weddingEndISO:  "2027-04-25T03:30:00",
     weddingDateLong: "Samedi 24 avril 2027",
     venueName: "La Ferme de la Faisanderie",
+    venueCity: "Villepreux",
     venueAddress: "Route de Rennemoulin, 78450 Villepreux",
     mapsQuery: "Ferme de la Faisanderie, Route de Rennemoulin, 78450 Villepreux",
     rsvpDeadline: "1er février 2027",
@@ -738,7 +736,7 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
   document.getElementById('cfg-countdown-date').textContent = CONFIG.weddingDateLong;
   document.getElementById('cfg-venue-name').textContent = CONFIG.venueName;
   document.getElementById('cfg-venue-address').textContent = CONFIG.venueAddress;
-  document.getElementById('cfg-hero-place').textContent = CONFIG.venueName;
+  document.getElementById('cfg-hero-place').textContent = CONFIG.venueName + ", " + CONFIG.venueCity;
   document.getElementById('cfg-rsvp-deadline').textContent = "Merci de répondre avant le " + CONFIG.rsvpDeadline;
 
   document.getElementById('cfg-maps-link').href =
