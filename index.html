@@ -308,8 +308,12 @@ section{
   font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
   color:#3C3339;opacity:0.62;
 }
+.calendar-links{
+  display:flex;flex-wrap:wrap;justify-content:center;
+  gap:14px clamp(20px, 6vw, 36px);
+  margin:24px auto 0;
+}
 .calendar-link{
-  display:block;width:max-content;margin:24px auto 0;
   text-align:center;font-size:var(--fs-sm);font-weight:700;
   color:var(--rose-deep);text-decoration:none;
   border-bottom:1.5px solid currentColor;padding-bottom:3px;
@@ -557,7 +561,10 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
       <div class="count-tile"><span class="count-num" id="cd-mins">--</span><span class="count-label">min</span></div>
       <div class="count-tile"><span class="count-num" id="cd-secs">--</span><span class="count-label">sec</span></div>
     </div>
-    <a class="calendar-link" id="cfg-calendar-link" href="#" target="_blank" rel="noopener">+ Ajouter à mon calendrier</a>
+    <div class="calendar-links">
+      <a class="calendar-link" id="cfg-cal-samedi" href="#" target="_blank" rel="noopener">+ Ajouter le samedi</a>
+      <a class="calendar-link" id="cfg-cal-dimanche" href="#" target="_blank" rel="noopener">+ Ajouter le brunch</a>
+    </div>
   </section>
 
   <!-- ============ INFOS PRATIQUES ============ -->
@@ -721,7 +728,9 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
   var CONFIG = {
     names: "Awéna & Grégoire",
     weddingDateISO: "2027-04-24T17:00:00",
-    weddingEndISO:  "2027-04-25T14:00:00",
+    weddingEndISO:  "2027-04-25T03:00:00",
+    brunchStartISO: "2027-04-25T11:30:00",
+    brunchEndISO:   "2027-04-25T14:30:00",
     weddingDateLong: "Samedi 24 avril 2027",
     venueName: "La Ferme de la Faisanderie",
     venueCity: "Villepreux",
@@ -749,15 +758,21 @@ footer .fine{font-size:var(--fs-sm);color:#F0E2DA;margin:0;}
 
   // ctz=Europe/Paris : sans ça Google interprète ces heures dans le fuseau du visiteur
   function calStamp(iso){ return iso.replace(/[-:]/g,''); }
-  document.getElementById('cfg-calendar-link').href =
-    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" +
-    encodeURIComponent("Mariage de " + CONFIG.names) +
-    "&dates=" + calStamp(CONFIG.weddingDateISO) + "/" + calStamp(CONFIG.weddingEndISO) +
-    "&ctz=Europe/Paris" +
-    "&location=" + encodeURIComponent(CONFIG.venueName + ", " + CONFIG.venueAddress) +
-    "&details=" + encodeURIComponent(
-      "On vous attend !\n\nSamedi : cocktail dès 17h, puis dîner et DJ.\n" +
-      "Dimanche : brunch à la ferme dès 11h30.");
+  function calLink(id, titre, debut, fin, details){
+    document.getElementById(id).href =
+      "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" +
+      encodeURIComponent(titre) +
+      "&dates=" + calStamp(debut) + "/" + calStamp(fin) +
+      "&ctz=Europe/Paris" +
+      "&location=" + encodeURIComponent(CONFIG.venueName + ", " + CONFIG.venueAddress) +
+      "&details=" + encodeURIComponent(details);
+  }
+  calLink('cfg-cal-samedi', "Mariage de " + CONFIG.names,
+          CONFIG.weddingDateISO, CONFIG.weddingEndISO,
+          "On vous attend !\n\nCocktail au milieu des champs dès 17h, dîner sous la charpente, puis DJ jusqu'au bout de la nuit.");
+  calLink('cfg-cal-dimanche', "Brunch — mariage de " + CONFIG.names,
+          CONFIG.brunchStartISO, CONFIG.brunchEndISO,
+          "Galettes bretonnes salées et crêpes sucrées, à la ferme.");
 
   function wireExternalButton(id, url){
     var el = document.getElementById(id);
